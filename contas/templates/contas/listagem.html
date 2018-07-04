@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1>Listagem</h1>
+    <ul>
+    {% for transacao in transacoes %}
+        <li>{{ transacao.descricao }} | {{ transacao.data }} | {{ transacao.valor }} </li>
+    {% endfor %}
+    </ul>
+
+    <table border="1px">
+            <th> Descrição </th>
+            <th> Data </th>
+            <th> Valor </th>
+        {% for transacao in transacoes %}
+            <tr>
+             
+                <th><a href="{% url 'url_update' transacao.id %}">{{ transacao.descricao }}</a></th>
+                               
+                <th>{{ transacao.data }}</th>
+                    
+                <th>{{ transacao.valor }}</th>
+
+            </tr>
+        {% endfor %}
+    </table><br>
+    <span>Total das despesas: </span>
+    
+    {% for valor in transacoes %}
+        {{ total }} {{ valor.valor }}
+    {% endfor %}
+    <span>{{ total }}</span>
+
+    <a href="{% url 'url_nova' %}">Nova despesa</a>
+
+</body>
+</html>
